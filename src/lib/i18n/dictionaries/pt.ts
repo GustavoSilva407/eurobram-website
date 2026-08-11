@@ -87,8 +87,8 @@ export const pt: Dictionary = {
       badge: "Alemanha ⇄ Brasil · Aquisição para os Setores Farmacêutico e Agroquímico",
       title: "Fornecimento de Materiais de Laboratório para o Mercado Farmacêutico Brasileiro",
       subtitle:
-        "A EUROBRAM ajuda empresas farmacêuticas e agroquímicas a obter materiais de laboratório — colunas de HPLC, consumíveis e equipamentos especializados — conectando você diretamente a fornecedores europeus qualificados.",
-      ctaPrimary: "Solicitar Cotação",
+        "Quando materiais de laboratório são difíceis de encontrar, a EUROBRAM os obtém — conectando empresas farmacêuticas, agroquímicas e laboratoriais no Brasil a fornecedores europeus qualificados, com cada item verificado conforme sua especificação antes da entrega.",
+      ctaPrimary: "Solicitar Assistência de Fornecimento",
       ctaSecondary: "Nossos Serviços",
       trust1: "Sede em Weimar, Alemanha",
       trust2: "Rede de Parceiros no Brasil",

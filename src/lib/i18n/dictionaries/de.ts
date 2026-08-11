@@ -87,8 +87,8 @@ export const de: Dictionary = {
       badge: "Deutschland ⇄ Brasilien · Beschaffung für Pharma & Agrochemie",
       title: "Beschaffung von Labormaterialien für den brasilianischen Pharmamarkt",
       subtitle:
-        "EUROBRAM unterstützt Pharma- und Agrochemieunternehmen bei der Beschaffung von Labormaterialien — HPLC-Säulen, Verbrauchsmaterialien und Spezialgeräte — und verbindet Sie direkt mit qualifizierten europäischen Lieferanten.",
-      ctaPrimary: "Anfrage stellen",
+        "Wenn Labormaterialien schwer zu finden sind, beschafft EUROBRAM sie — und verbindet Pharma-, Agrochemie- und Laborunternehmen in Brasilien mit qualifizierten europäischen Lieferanten, wobei jeder Artikel vor der Lieferung gegen Ihre Spezifikation geprüft wird.",
+      ctaPrimary: "Beschaffungsanfrage stellen",
       ctaSecondary: "Unsere Leistungen",
       trust1: "Hauptsitz Weimar, Deutschland",
       trust2: "Partnernetzwerk in Brasilien",

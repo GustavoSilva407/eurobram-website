@@ -24,11 +24,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     <>
       <Hero locale={locale} dict={dict} />
       <TrustBar dict={dict} />
+      <ProcessTimeline dict={dict} />
       <AboutPreview locale={locale} dict={dict} />
       <ServicesGrid locale={locale} dict={dict} />
       <IndustriesGrid dict={dict} />
       <WhyChoose dict={dict} />
-      <ProcessTimeline dict={dict} />
       <ProcurementCategories dict={dict} />
       <Testimonials dict={dict} />
       <FaqPreview locale={locale} dict={dict} />

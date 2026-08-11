@@ -89,8 +89,8 @@ export const en = {
       badge: "Germany ⇄ Brazil · Pharmaceutical & Agrochemical Procurement",
       title: "Laboratory Materials Sourcing for the Brazilian Pharmaceutical Market",
       subtitle:
-        "EUROBRAM helps pharmaceutical and agrochemical companies source laboratory materials — HPLC columns, consumables and specialty equipment — connecting you directly with qualified European suppliers.",
-      ctaPrimary: "Request an Inquiry",
+        "When laboratory materials are hard to find, EUROBRAM sources them — connecting pharmaceutical, agrochemical and laboratory organizations in Brazil to qualified European suppliers, with every item verified against your specification before delivery.",
+      ctaPrimary: "Request Sourcing Assistance",
       ctaSecondary: "Our Services",
       trust1: "Weimar, Germany HQ",
       trust2: "Brazil Partner Network",
