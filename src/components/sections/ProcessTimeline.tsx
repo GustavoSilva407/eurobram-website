@@ -5,19 +5,17 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { processSteps } from "@/lib/content";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-export function ProcessTimeline() {
+export function ProcessTimeline({ dict }: { dict: Dictionary }) {
   const [active, setActive] = useState(0);
+  const t = dict.home.process;
+  const processSteps = dict.processSteps;
 
   return (
     <section className="py-24 lg:py-32">
       <Container>
-        <SectionHeading
-          eyebrow="How It Works"
-          title="Four steps from inquiry to delivery."
-          description="Every order moves through the same disciplined process — from your specification to a verified match in your hands."
-        />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} description={t.description} />
 
         <Reveal delay={0.15} className="mt-16">
           <div className="hidden lg:block">

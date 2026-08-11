@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { isLocale, defaultLocale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-export function CookieBanner() {
+export function CookieBanner({ dict }: { dict: Dictionary }) {
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
+  const firstSegment = pathname.split("/")[1];
+  const locale = isLocale(firstSegment) ? firstSegment : defaultLocale;
 
   useEffect(() => {
     const consent = window.localStorage.getItem("eurobram-cookie-consent");
@@ -29,9 +35,9 @@ export function CookieBanner() {
         >
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-relaxed text-charcoal-600 dark:text-white/65">
-              We use cookies to operate this site and understand how it's used. Read our{" "}
-              <Link href="/legal/cookies" className="font-medium text-navy-800 underline underline-offset-2 dark:text-white">
-                Cookie Policy
+              {dict.cookieBanner.text}{" "}
+              <Link href={`/${locale}/legal/cookies`} className="font-medium text-navy-800 underline underline-offset-2 dark:text-white">
+                {dict.cookieBanner.cookiePolicyLink}
               </Link>
               .
             </p>
@@ -40,13 +46,13 @@ export function CookieBanner() {
                 onClick={() => respond("essential-only")}
                 className="rounded-full border border-navy-200 px-4 py-2 text-xs font-semibold text-navy-800 transition-colors hover:bg-mist-100 dark:border-ink-600 dark:text-white dark:hover:bg-ink-700"
               >
-                Essential only
+                {dict.cookieBanner.essentialOnly}
               </button>
               <button
                 onClick={() => respond("accepted")}
                 className="rounded-full bg-emerald-500 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-emerald-600"
               >
-                Accept all
+                {dict.cookieBanner.acceptAll}
               </button>
             </div>
           </div>

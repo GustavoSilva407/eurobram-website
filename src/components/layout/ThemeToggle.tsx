@@ -14,7 +14,7 @@ export const themeInitScript = `
 })();
 `;
 
-export function ThemeToggle({ scrolled }: { scrolled: boolean }) {
+export function ThemeToggle({ scrolled, label = "Toggle dark mode" }: { scrolled: boolean; label?: string }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function ThemeToggle({ scrolled }: { scrolled: boolean }) {
   return (
     <button
       onClick={toggle}
-      aria-label="Toggle dark mode"
+      aria-label={label}
       className={cn(
         "rounded-full p-2 transition-colors",
         scrolled ? "text-charcoal-600 hover:bg-mist-100 dark:text-white/70 dark:hover:bg-white/10" : "text-white hover:bg-white/10"

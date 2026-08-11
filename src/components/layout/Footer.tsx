@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { NewsletterForm } from "./NewsletterForm";
-import { company, industries } from "@/lib/content";
+import { company } from "@/lib/constants";
+import { href, countryNames, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 
 function LinkedInGlyph() {
   return (
@@ -12,37 +14,37 @@ function LinkedInGlyph() {
   );
 }
 
-const columns = [
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Our Story", href: "/about#story" },
-      { label: "Services", href: "/services" },
-      { label: "Industries", href: "/industries" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Insights", href: "/insights" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Request a Brochure", href: "/contact?topic=brochure" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/legal/privacy" },
-      { label: "Imprint", href: "/legal/imprint" },
-      { label: "Cookie Policy", href: "/legal/cookies" },
-    ],
-  },
-];
-
-export function Footer() {
+export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const whatsapp = company.brazilPartner.phone.replace(/[^\d]/g, "");
+
+  const columns = [
+    {
+      title: dict.footer.companyCol,
+      links: [
+        { label: dict.footer.companyLinks.about, href: href(locale, "/about") },
+        { label: dict.footer.companyLinks.story, href: href(locale, "/about#story") },
+        { label: dict.footer.companyLinks.services, href: href(locale, "/services") },
+        { label: dict.footer.companyLinks.industries, href: href(locale, "/industries") },
+      ],
+    },
+    {
+      title: dict.footer.resourcesCol,
+      links: [
+        { label: dict.footer.resourcesLinks.insights, href: href(locale, "/insights") },
+        { label: dict.footer.resourcesLinks.faq, href: href(locale, "/faq") },
+        { label: dict.footer.resourcesLinks.brochure, href: `${href(locale, "/contact")}?topic=brochure` },
+        { label: dict.footer.resourcesLinks.contact, href: href(locale, "/contact") },
+      ],
+    },
+    {
+      title: dict.footer.legalCol,
+      links: [
+        { label: dict.footer.legalLinks.privacy, href: href(locale, "/legal/privacy") },
+        { label: dict.footer.legalLinks.imprint, href: href(locale, "/legal/imprint") },
+        { label: dict.footer.legalLinks.cookies, href: href(locale, "/legal/cookies") },
+      ],
+    },
+  ];
 
   return (
     <footer className="border-t border-navy-100 bg-navy-950 text-white">
@@ -54,15 +56,12 @@ export function Footer() {
             </span>
             <span className="font-display text-lg font-semibold">EUROBRAM</span>
           </div>
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-            Laboratory materials supplier connecting pharmaceutical and agrochemical
-            companies across Europe and Brazil.
-          </p>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">{dict.footer.blurb}</p>
           <div className="mt-6 space-y-2.5 text-sm text-white/70">
             <div className="flex items-start gap-2.5">
               <MapPin size={16} className="mt-0.5 shrink-0 text-emerald-400" />
               <span>
-                {company.address.street}, {company.address.postal} {company.address.city}, {company.address.country}
+                {company.address.street}, {company.address.postal} {company.address.city}, {countryNames[locale]}
               </span>
             </div>
             <div className="flex items-center gap-2.5">
@@ -85,13 +84,13 @@ export function Footer() {
               rel="noopener noreferrer"
               className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-white/80 transition-colors hover:border-emerald-400 hover:text-white"
             >
-              WhatsApp
+              {dict.footer.whatsapp}
             </a>
             <a
               href="https://www.linkedin.com/search/results/companies/?keywords=EUROBRAM%20GmbH"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="EUROBRAM on LinkedIn"
+              aria-label={dict.footer.linkedinLabel}
               className="rounded-full border border-white/15 p-2.5 text-white/80 transition-colors hover:border-emerald-400 hover:text-white"
             >
               <LinkedInGlyph />
@@ -115,23 +114,25 @@ export function Footer() {
         ))}
 
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">Newsletter</div>
-          <p className="mt-5 text-sm text-white/60">
-            Laboratory materials insights for the Brazilian pharmaceutical market, occasionally in your inbox.
-          </p>
-          <NewsletterForm />
+          <div className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">{dict.footer.newsletterTitle}</div>
+          <p className="mt-5 text-sm text-white/60">{dict.footer.newsletterBlurb}</p>
+          <NewsletterForm placeholder={dict.footer.emailPlaceholder} signUpLabel={dict.footer.signUp} signedUpLabel={dict.footer.signedUp} />
         </div>
       </Container>
 
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-4 py-6 text-xs text-white/40 sm:flex-row">
-          <div>© {new Date().getFullYear()} {company.name}. All rights reserved.</div>
+          <div>
+            © {new Date().getFullYear()} {company.name}. {dict.footer.rightsReserved}
+          </div>
           <div className="flex items-center gap-2">
-            <span>Laboratory Materials Specialists</span>
+            <span>{dict.footer.specialistsLabel}</span>
             <span>·</span>
-            <span>{industries.length} industries served</span>
+            <span>
+              {dict.industries.data.length} {dict.footer.industriesServed}
+            </span>
             <span>·</span>
-            <span>Germany + Brazil</span>
+            <span>{dict.footer.germanyBrazil}</span>
           </div>
         </Container>
       </div>

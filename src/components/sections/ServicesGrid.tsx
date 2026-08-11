@@ -3,21 +3,19 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { services } from "@/lib/content";
+import { href, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 import { serviceIcons } from "@/components/icons";
 
-export function ServicesGrid() {
-  const service = services[0];
+export function ServicesGrid({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+  const t = dict.home.servicesFeature;
+  const service = dict.services.data[0];
   const Icon = serviceIcons[service.icon];
 
   return (
     <section className="bg-mist-50 py-24 lg:py-32 dark:bg-ink-800">
       <Container>
-        <SectionHeading
-          eyebrow="What We Do"
-          title="Laboratory materials, sourced and delivered — nothing else in the way."
-          description="EUROBRAM focuses on one thing: getting the laboratory materials pharmaceutical and agrochemical companies need into Brazil, compliantly and on schedule."
-        />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} description={t.description} />
 
         <Reveal delay={0.15} className="mt-14">
           <div className="grid grid-cols-1 gap-10 rounded-3xl border border-mist-300 bg-white p-8 dark:border-ink-700 dark:bg-ink-900 sm:p-12 lg:grid-cols-[auto_1fr] lg:items-start">
@@ -38,10 +36,10 @@ export function ServicesGrid() {
                 ))}
               </ul>
               <Link
-                href={`/services/${service.slug}`}
+                href={href(locale, `/services/${service.slug}`)}
                 className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 hover:text-emerald-600 dark:text-white dark:hover:text-emerald-400"
               >
-                Explore Laboratory Materials <ArrowUpRight size={15} />
+                {t.exploreLink} <ArrowUpRight size={15} />
               </Link>
             </div>
           </div>

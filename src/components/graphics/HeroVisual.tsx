@@ -4,7 +4,19 @@ import { motion } from "framer-motion";
 import { CheckCircle2, PackageSearch } from "lucide-react";
 import { DotGrid } from "./GridBackdrop";
 
-export function HeroVisual() {
+export function HeroVisual({
+  certTitle,
+  certSubtitle,
+  columnLabel,
+  germanyLabel,
+  brazilLabel,
+}: {
+  certTitle: string;
+  certSubtitle: string;
+  columnLabel: string;
+  germanyLabel: string;
+  brazilLabel: string;
+}) {
   return (
     <div className="relative aspect-[4/5] w-full max-w-md lg:max-w-lg">
       <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 shadow-[0_40px_100px_-30px_rgba(6,20,42,0.7)]" />
@@ -33,10 +45,10 @@ export function HeroVisual() {
         <circle cx="300" cy="380" r="5" fill="#00A878" />
         <circle cx="300" cy="380" r="10" fill="none" stroke="#00A878" strokeOpacity="0.4" strokeWidth="1" />
         <text x="104" y="120" fill="#ffffff" fontSize="12" fontFamily="var(--font-sans)" letterSpacing="1.5" opacity="0.85">
-          GERMANY
+          {germanyLabel}
         </text>
         <text x="222" y="405" fill="#ffffff" fontSize="12" fontFamily="var(--font-sans)" letterSpacing="1.5" opacity="0.85">
-          BRAZIL
+          {brazilLabel}
         </text>
       </svg>
 
@@ -49,14 +61,14 @@ export function HeroVisual() {
       >
         <div className="flex items-center gap-2 text-navy-800">
           <CheckCircle2 size={16} className="text-emerald-500" />
-          <span className="text-[11px] font-semibold tracking-wide">CERTIFICATE OF ANALYSIS</span>
+          <span className="text-[11px] font-semibold tracking-wide">{certTitle}</span>
         </div>
         <div className="mt-3 space-y-1.5">
           <div className="h-1.5 w-full rounded-full bg-mist-300" />
           <div className="h-1.5 w-3/4 rounded-full bg-mist-300" />
           <div className="h-1.5 w-5/6 rounded-full bg-mist-300" />
         </div>
-        <div className="mt-3 text-[10px] font-medium text-emerald-600">Verified &amp; Compliant</div>
+        <div className="mt-3 text-[10px] font-medium text-emerald-600">{certSubtitle}</div>
       </motion.div>
 
       {/* floating card: analytical standard */}
@@ -68,7 +80,7 @@ export function HeroVisual() {
       >
         <div className="flex items-center gap-2 text-navy-800">
           <PackageSearch size={16} className="text-navy-700" />
-          <span className="text-[11px] font-semibold tracking-wide">HPLC COLUMN</span>
+          <span className="text-[11px] font-semibold tracking-wide">{columnLabel}</span>
         </div>
         <div className="mt-3 flex items-end gap-1">
           {[40, 65, 50, 80, 60].map((h, i) => (

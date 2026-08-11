@@ -5,18 +5,54 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
-import { navigation } from "@/lib/content";
-import { cn } from "@/lib/utils";
+import { locales, localeLabels, swapLocale, href, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
+import { cn, slugifyLabel } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 
-const LOCALES = ["DE", "EN", "PT"];
+type NavChild = { label: string; href: string; description?: string };
+type NavItem = { label: string; href: string; children?: NavChild[] };
 
-export function Header() {
+function buildNavigation(locale: Locale, dict: Dictionary): NavItem[] {
+  return [
+    { label: dict.nav.home, href: href(locale, "/") },
+    {
+      label: dict.nav.about,
+      href: href(locale, "/about"),
+      children: [
+        { label: dict.nav.aboutCompany, href: href(locale, "/about#company"), description: dict.nav.aboutCompanyDesc },
+        { label: dict.nav.aboutMission, href: href(locale, "/about#mission"), description: dict.nav.aboutMissionDesc },
+        { label: dict.nav.aboutTeam, href: href(locale, "/about#team"), description: dict.nav.aboutTeamDesc },
+        { label: dict.nav.aboutStory, href: href(locale, "/about#story"), description: dict.nav.aboutStoryDesc },
+      ],
+    },
+    { label: dict.nav.services, href: href(locale, "/services") },
+    {
+      label: dict.nav.industries,
+      href: href(locale, "/industries"),
+      children: dict.industries.data.slice(0, 4).map((i) => ({
+        label: i.name,
+        href: `${href(locale, "/industries")}#${slugifyLabel(i.name)}`,
+      })),
+    },
+    {
+      label: dict.nav.resources,
+      href: href(locale, "/insights"),
+      children: [
+        { label: dict.nav.resourcesInsights, href: href(locale, "/insights"), description: dict.nav.resourcesInsightsDesc },
+        { label: dict.nav.resourcesFaq, href: href(locale, "/faq"), description: dict.nav.resourcesFaqDesc },
+      ],
+    },
+    { label: dict.nav.contact, href: href(locale, "/contact") },
+  ];
+}
+
+export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const [locale, setLocale] = useState("EN");
   const pathname = usePathname();
+  const navigation = buildNavigation(locale, dict);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -40,7 +76,7 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href={href(locale, "/")} className="flex items-center gap-2.5">
           <span
             className={cn(
               "flex h-9 w-9 items-center justify-center rounded-lg font-display text-sm font-bold tracking-tight",
@@ -105,7 +141,7 @@ export function Header() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <button
-            aria-label="Search"
+            aria-label={dict.nav.search}
             onClick={() => window.dispatchEvent(new CustomEvent("eurobram:open-search"))}
             className={cn(
               "rounded-full p-2 transition-colors",
@@ -114,17 +150,17 @@ export function Header() {
           >
             <Search size={17} />
           </button>
-          <ThemeToggle scrolled={scrolled} />
+          <ThemeToggle scrolled={scrolled} label={dict.nav.toggleTheme} />
           <div
             className={cn(
               "flex items-center gap-1 rounded-full border px-1 py-1 text-xs font-semibold",
               scrolled ? "border-navy-100 dark:border-ink-700" : "border-white/25"
             )}
           >
-            {LOCALES.map((l) => (
-              <button
+            {locales.map((l) => (
+              <Link
                 key={l}
-                onClick={() => setLocale(l)}
+                href={swapLocale(pathname, l)}
                 className={cn(
                   "rounded-full px-2 py-1 transition-colors",
                   locale === l
@@ -134,24 +170,24 @@ export function Header() {
                     : "text-white/70 hover:text-white"
                 )}
               >
-                {l}
-              </button>
+                {localeLabels[l]}
+              </Link>
             ))}
           </div>
           <Link
-            href="/contact"
+            href={href(locale, "/contact")}
             className="rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(0,168,120,0.6)] transition-colors hover:bg-emerald-600"
           >
-            Request an Inquiry
+            {dict.nav.requestInquiry}
           </Link>
         </div>
 
         <div className="flex items-center gap-1 lg:hidden">
-          <ThemeToggle scrolled={scrolled} />
+          <ThemeToggle scrolled={scrolled} label={dict.nav.toggleTheme} />
           <button
             className={cn("p-1", scrolled ? "text-navy-900 dark:text-white" : "text-white")}
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={dict.nav.toggleMenu}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -171,8 +207,22 @@ export function Header() {
                 onClick={() => window.dispatchEvent(new CustomEvent("eurobram:open-search"))}
                 className="mb-4 flex w-full items-center gap-2.5 rounded-full border border-mist-300 px-4 py-2.5 text-sm text-charcoal-500 dark:border-ink-700 dark:text-white/60"
               >
-                <Search size={16} /> Search
+                <Search size={16} /> {dict.nav.search}
               </button>
+              <div className="mb-4 flex items-center gap-2">
+                {locales.map((l) => (
+                  <Link
+                    key={l}
+                    href={swapLocale(pathname, l)}
+                    className={cn(
+                      "rounded-full border px-3 py-1.5 text-xs font-semibold",
+                      locale === l ? "border-navy-800 bg-navy-800 text-white dark:border-white dark:bg-white dark:text-navy-900" : "border-mist-300 text-charcoal-600 dark:border-ink-700 dark:text-white/60"
+                    )}
+                  >
+                    {localeLabels[l]}
+                  </Link>
+                ))}
+              </div>
               {navigation.map((item) => (
                 <div key={item.label} className="border-b border-mist-200 py-3 last:border-0 dark:border-ink-700">
                   <Link href={item.href} className="block text-base font-semibold text-navy-900 dark:text-white">
@@ -190,10 +240,10 @@ export function Header() {
                 </div>
               ))}
               <Link
-                href="/contact"
+                href={href(locale, "/contact")}
                 className="mt-6 block rounded-full bg-emerald-500 px-5 py-3 text-center text-sm font-semibold text-white"
               >
-                Request an Inquiry
+                {dict.nav.requestInquiry}
               </Link>
             </div>
           </motion.div>

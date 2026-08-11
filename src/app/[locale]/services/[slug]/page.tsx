@@ -7,26 +7,43 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { DotGrid } from "@/components/graphics/GridBackdrop";
 import { CtaSection } from "@/components/sections/CtaSection";
-import { services } from "@/lib/content";
 import { serviceIcons } from "@/components/icons";
+import { isLocale, locales, href } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 
 export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  return locales.flatMap((locale) => {
+    const dict = getDictionary(locale);
+    return dict.services.data.map((s) => ({ locale, slug: s.slug }));
+  });
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale, slug } = await params;
+  if (!isLocale(rawLocale)) return {};
+  const dict = getDictionary(rawLocale);
+  const service = dict.services.data.find((s) => s.slug === slug);
   if (!service) return {};
   return { title: service.name, description: service.short };
 }
 
-export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+export default async function ServiceDetailPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale: rawLocale, slug } = await params;
+  if (!isLocale(rawLocale)) notFound();
+  const dict = getDictionary(rawLocale);
+  const service = dict.services.data.find((s) => s.slug === slug);
   if (!service) notFound();
 
   const Icon = serviceIcons[service.icon];
+  const t = dict.services;
 
   return (
     <>
@@ -34,8 +51,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <DotGrid className="absolute inset-0 text-white/[0.04]" />
         <Container className="relative max-w-3xl">
           <Reveal>
-            <Link href="/" className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300 hover:text-emerald-200">
-              ← Home
+            <Link href={href(rawLocale, "/")} className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300 hover:text-emerald-200">
+              {t.backHome}
             </Link>
             <div className="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-emerald-300">
               <Icon size={26} />
@@ -45,7 +62,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">{service.description}</p>
             <div className="mt-9">
-              <Button href="/contact">Request an Inquiry</Button>
+              <Button href={href(rawLocale, "/contact")}>{t.requestInquiry}</Button>
             </div>
           </Reveal>
         </Container>
@@ -54,7 +71,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <section className="py-24 lg:py-28">
         <Container className="grid grid-cols-1 gap-16 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
-            <h2 className="font-display text-2xl font-semibold text-navy-900 dark:text-white">What this covers</h2>
+            <h2 className="font-display text-2xl font-semibold text-navy-900 dark:text-white">{t.whatCovers}</h2>
             <ul className="mt-8 space-y-5">
               {service.points.map((point) => (
                 <li key={point} className="flex items-start gap-3">
@@ -68,14 +85,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Reveal>
           <Reveal delay={0.15}>
             <div className="rounded-2xl border border-mist-300 bg-mist-50 p-8 dark:border-ink-700 dark:bg-ink-800">
-              <div className="font-display text-lg font-semibold text-navy-900 dark:text-white">Have a specific requirement?</div>
-              <p className="mt-2 text-sm leading-relaxed text-charcoal-600 dark:text-white/60">
-                Tell us what you need sourced or shipped and we'll respond with a realistic assessment —
-                including anything we think won't work.
-              </p>
+              <div className="font-display text-lg font-semibold text-navy-900 dark:text-white">{t.specificRequirementTitle}</div>
+              <p className="mt-2 text-sm leading-relaxed text-charcoal-600 dark:text-white/60">{t.specificRequirementText}</p>
               <div className="mt-6">
-                <Button href="/contact" variant="secondary">
-                  Contact EUROBRAM
+                <Button href={href(rawLocale, "/contact")} variant="secondary">
+                  {t.contactButton}
                 </Button>
               </div>
             </div>
@@ -83,7 +97,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </Container>
       </section>
 
-      <CtaSection />
+      <CtaSection locale={rawLocale} dict={dict} />
     </>
   );
 }

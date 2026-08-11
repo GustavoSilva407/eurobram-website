@@ -4,13 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X, CornerDownLeft } from "lucide-react";
-import { searchIndex } from "@/lib/searchIndex";
+import { buildSearchIndex } from "@/lib/searchIndex";
+import type { Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/dictionaries";
 
-export function SearchModal() {
+export function SearchModal({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const router = useRouter();
+  const searchIndex = useMemo(() => buildSearchIndex(locale, dict), [locale, dict]);
 
   useEffect(() => {
     const openHandler = () => setOpen(true);
@@ -53,7 +56,7 @@ export function SearchModal() {
           entry.keywords?.toLowerCase().includes(q)
       )
       .slice(0, 8);
-  }, [query]);
+  }, [query, searchIndex]);
 
   const go = (href: string) => {
     setOpen(false);
@@ -100,17 +103,19 @@ export function SearchModal() {
                     go(results[active].href);
                   }
                 }}
-                placeholder="Search services, industries, insights…"
+                placeholder={dict.searchModal.placeholder}
                 className="w-full text-sm text-charcoal-800 placeholder:text-charcoal-400 focus:outline-none dark:text-white dark:placeholder:text-white/35"
               />
-              <button onClick={() => setOpen(false)} aria-label="Close search" className="shrink-0 text-charcoal-400 hover:text-navy-800 dark:text-white/50 dark:hover:text-white">
+              <button onClick={() => setOpen(false)} aria-label={dict.searchModal.close} className="shrink-0 text-charcoal-400 hover:text-navy-800 dark:text-white/50 dark:hover:text-white">
                 <X size={18} />
               </button>
             </div>
 
             <div className="max-h-96 overflow-y-auto p-2">
               {results.length === 0 && (
-                <div className="px-4 py-8 text-center text-sm text-charcoal-400 dark:text-white/45">No results for “{query}”.</div>
+                <div className="px-4 py-8 text-center text-sm text-charcoal-400 dark:text-white/45">
+                  {dict.searchModal.noResults.replace("{{query}}", query)}
+                </div>
               )}
               {results.map((entry, i) => (
                 <button
@@ -126,14 +131,14 @@ export function SearchModal() {
                     <span className="block truncate text-xs text-charcoal-400 dark:text-white/45">{entry.description}</span>
                   </span>
                   <span className="shrink-0 rounded-full bg-navy-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-navy-700 dark:bg-ink-700 dark:text-white/70">
-                    {entry.group}
+                    {dict.searchModal.groups[entry.group]}
                   </span>
                 </button>
               ))}
             </div>
 
             <div className="flex items-center gap-1.5 border-t border-mist-200 px-5 py-3 text-xs text-charcoal-400 dark:border-ink-700 dark:text-white/40">
-              <CornerDownLeft size={12} /> to select · Esc to close
+              <CornerDownLeft size={12} /> {dict.searchModal.toSelect} · {dict.searchModal.escToClose}
             </div>
           </motion.div>
         </motion.div>
