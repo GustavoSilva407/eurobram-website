@@ -21,16 +21,19 @@ export function WhyChoose({ dict }: { dict: Dictionary }) {
           </div>
           {t.rows.map((row, i) => (
             <div
-              key={row}
-              className={`grid grid-cols-[1fr_auto_auto] items-center gap-x-4 px-6 py-4 text-sm sm:gap-x-8 sm:px-8 ${
+              key={row.label}
+              className={`grid grid-cols-[1fr_auto_auto] items-start gap-x-4 px-6 py-4 text-sm sm:gap-x-8 sm:px-8 ${
                 i % 2 === 0 ? "bg-white/[0.02]" : ""
               }`}
             >
-              <span className="text-white/85">{row}</span>
-              <span className="flex justify-center">
+              <div>
+                <div className="text-white/90 font-medium">{row.label}</div>
+                <div className="mt-1 text-xs leading-relaxed text-white/50">{row.benefit}</div>
+              </div>
+              <span className="flex justify-center pt-0.5">
                 <Check size={18} className="text-emerald-400" />
               </span>
-              <span className="flex justify-center">
+              <span className="flex justify-center pt-0.5">
                 {typical[i] ? <Check size={18} className="text-white/40" /> : <X size={18} className="text-white/25" />}
               </span>
             </div>

@@ -140,13 +140,34 @@ export const en = {
       eurobramCol: "EUROBRAM",
       brokerCol: "General Broker",
       rows: [
-        "Certified equipment and consumables",
-        "Dedicated teams in Germany and Brazil",
-        "Direct access to European supplier network",
-        "Materials verified against specification",
-        "Named specialist for every inquiry",
-        "Support for hard-to-source, difficult items",
-        "Transparent, proactive shipment communication",
+        {
+          label: "Certified equipment and consumables",
+          benefit: "Every item comes from manufacturers we've already qualified, not sourced blind.",
+        },
+        {
+          label: "Dedicated teams in Germany and Brazil",
+          benefit: "A named specialist coordinates your request on each side, not a shared support queue.",
+        },
+        {
+          label: "Direct access to European supplier network",
+          benefit: "We reach suppliers directly, including ones that are hard to contact from Brazil.",
+        },
+        {
+          label: "Materials verified against specification",
+          benefit: "We confirm sourced items match your technical requirements before the order proceeds.",
+        },
+        {
+          label: "Named specialist for every inquiry",
+          benefit: "You reach the same person throughout your request, not a rotating queue.",
+        },
+        {
+          label: "Support for hard-to-source, difficult items",
+          benefit: "When a standard channel comes up empty, we keep searching our broader network.",
+        },
+        {
+          label: "Transparent, proactive shipment communication",
+          benefit: "You're updated as your order moves, rather than having to chase us for status.",
+        },
       ],
     },
     process: {
@@ -159,25 +180,13 @@ export const en = {
       title: "Not a catalog — a sourcing network.",
       description: "We don't hold inventory for sale. We identify, qualify and move the specific materials your laboratory or production line needs.",
     },
-    testimonials: {
-      eyebrow: "Testimonials",
-      title: "What partners say about working with us.",
+    commitments: {
+      eyebrow: "What You Can Expect",
+      title: "What you can expect when you work with us.",
       items: [
-        {
-          quote: "Every shipment has matched the specification sheet exactly — no substitutions, no surprises when it reaches our bench.",
-          role: "Quality Control Director",
-          org: "Pharmaceutical Manufacturer",
-        },
-        {
-          quote: "We had an HPLC column that two other suppliers couldn't locate. EUROBRAM found it and got it to us without the usual back-and-forth.",
-          role: "Laboratory Manager",
-          org: "Contract Research Organization",
-        },
-        {
-          quote: "Having a single point of contact for sourcing simplified a process that used to involve three separate vendors.",
-          role: "Procurement Lead",
-          org: "Agrochemical Company",
-        },
+        "Every item is verified against your specification before it leaves the supplier.",
+        "When a supplier can't locate something, we keep searching our network before reporting back.",
+        "One point of contact follows your inquiry from first message through delivery.",
       ],
     },
     faqPreview: {
@@ -250,9 +259,9 @@ export const en = {
       title: "Well-trained, experienced teams in Germany and Brazil.",
       description: "A named specialist on each side of the shipment — not a support queue.",
       germanyLabel: "Germany · Weimar",
-      germanyDesc: "Primary contact for procurement and general inquiries from our Weimar headquarters.",
+      germanyDesc: "Based at our Weimar headquarters, handling supplier access and procurement across Europe.",
       brazilLabel: "Brazil · Partner Network",
-      brazilDesc: "Coordinates local delivery and support on the Brazilian side of every order.",
+      brazilDesc: "Local market understanding and customer support on the Brazilian side of every order.",
     },
   },
 
@@ -313,14 +322,14 @@ export const en = {
   ],
 
   processSteps: [
-    { title: "Inquiry", description: "You share what you need — a product, a specification, or a challenge you're facing sourcing it." },
+    { title: "Inquiry", description: "We clarify exactly what you need — a product, a specification, or a sourcing challenge — before any search begins." },
     { title: "Sourcing", description: "Our network identifies qualified suppliers and available inventory across Europe." },
     { title: "Quality Check", description: "Materials are verified against your specification before they leave the supplier." },
     { title: "Delivery", description: "Materials arrive at your laboratory or facility, ready for use." },
   ],
 
   trustPoints: [
-    { label: "Germany + Brazil", value: "Bilateral Presence", description: "Dedicated teams supporting customers in both regions." },
+    { label: "Germany + Brazil", value: "Bilateral Presence", description: "European sourcing from Germany, local market support from Brazil." },
     { label: "Quality-First", value: "Certified Suppliers", description: "Every item sourced from qualified, reputable manufacturers." },
     { label: "Direct Network", value: "European Sourcing", description: "Established relationships with manufacturers and suppliers." },
     { label: "Personal Contact", value: "Direct Support", description: "A named specialist for every inquiry, not a ticket queue." },

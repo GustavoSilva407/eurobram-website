@@ -138,13 +138,34 @@ export const de: Dictionary = {
       eurobramCol: "EUROBRAM",
       brokerCol: "Allgemeiner Zwischenhändler",
       rows: [
-        "Zertifizierte Geräte und Verbrauchsmaterialien",
-        "Eigene Teams in Deutschland und Brasilien",
-        "Direkter Zugang zum europäischen Lieferantennetzwerk",
-        "Materialien gegen Ihre Spezifikation geprüft",
-        "Namentlich benannter Spezialist für jede Anfrage",
-        "Unterstützung bei schwer zu beschaffenden Artikeln",
-        "Transparente, proaktive Kommunikation zur Sendung",
+        {
+          label: "Zertifizierte Geräte und Verbrauchsmaterialien",
+          benefit: "Jeder Artikel stammt von Herstellern, die wir bereits geprüft haben — keine Beschaffung ins Blaue.",
+        },
+        {
+          label: "Eigene Teams in Deutschland und Brasilien",
+          benefit: "Ein namentlich benannter Spezialist betreut Ihre Anfrage auf jeder Seite — kein geteilter Support.",
+        },
+        {
+          label: "Direkter Zugang zum europäischen Lieferantennetzwerk",
+          benefit: "Wir erreichen Lieferanten direkt, auch solche, die von Brasilien aus schwer zu kontaktieren sind.",
+        },
+        {
+          label: "Materialien gegen Ihre Spezifikation geprüft",
+          benefit: "Wir bestätigen, dass beschaffte Artikel Ihren technischen Anforderungen entsprechen, bevor die Bestellung weitergeht.",
+        },
+        {
+          label: "Namentlich benannter Spezialist für jede Anfrage",
+          benefit: "Sie erreichen während Ihrer gesamten Anfrage dieselbe Person — kein wechselndes Team.",
+        },
+        {
+          label: "Unterstützung bei schwer zu beschaffenden Artikeln",
+          benefit: "Wenn ein Standardweg nicht weiterhilft, suchen wir in unserem breiteren Netzwerk weiter.",
+        },
+        {
+          label: "Transparente, proaktive Kommunikation zur Sendung",
+          benefit: "Sie werden über den Fortschritt informiert, statt selbst nachfragen zu müssen.",
+        },
       ],
     },
     process: {
@@ -157,25 +178,13 @@ export const de: Dictionary = {
       title: "Kein Katalog — ein Beschaffungsnetzwerk.",
       description: "Wir halten keinen Lagerbestand zum Verkauf vor. Wir identifizieren, qualifizieren und beschaffen genau die Materialien, die Ihr Labor oder Ihre Produktionslinie benötigt.",
     },
-    testimonials: {
-      eyebrow: "Referenzen",
-      title: "Was Partner über die Zusammenarbeit mit uns sagen.",
+    commitments: {
+      eyebrow: "Was Sie erwarten können",
+      title: "Was Sie bei der Zusammenarbeit mit uns erwarten können.",
       items: [
-        {
-          quote: "Jede Sendung hat exakt dem Datenblatt entsprochen — keine Ersatzprodukte, keine Überraschungen, wenn sie unser Labor erreicht.",
-          role: "Leiterin Qualitätskontrolle",
-          org: "Pharmahersteller",
-        },
-        {
-          quote: "Wir hatten eine HPLC-Säule, die zwei andere Lieferanten nicht auftreiben konnten. EUROBRAM hat sie gefunden und uns ohne das übliche Hin und Her geliefert.",
-          role: "Laborleiter",
-          org: "Auftragsforschungsinstitut",
-        },
-        {
-          quote: "Ein einziger Ansprechpartner für die Beschaffung hat einen Prozess vereinfacht, an dem früher drei separate Lieferanten beteiligt waren.",
-          role: "Einkaufsleiter",
-          org: "Agrochemieunternehmen",
-        },
+        "Jeder Artikel wird gegen Ihre Spezifikation geprüft, bevor er den Lieferanten verlässt.",
+        "Wenn ein Lieferant einen Artikel nicht finden kann, suchen wir in unserem Netzwerk weiter, bevor wir Rückmeldung geben.",
+        "Ein fester Ansprechpartner begleitet Ihre Anfrage von der ersten Nachricht bis zur Lieferung.",
       ],
     },
     faqPreview: {
@@ -248,9 +257,9 @@ export const de: Dictionary = {
       title: "Gut ausgebildete, erfahrene Teams in Deutschland und Brasilien.",
       description: "Ein namentlich benannter Spezialist auf jeder Seite der Sendung — keine Support-Warteschlange.",
       germanyLabel: "Deutschland · Weimar",
-      germanyDesc: "Primärer Ansprechpartner für Beschaffung und allgemeine Anfragen von unserem Hauptsitz in Weimar.",
+      germanyDesc: "Am Hauptsitz in Weimar zuständig für Lieferantenzugang und Beschaffung in ganz Europa.",
       brazilLabel: "Brasilien · Partnernetzwerk",
-      brazilDesc: "Koordiniert die lokale Lieferung und Betreuung auf der brasilianischen Seite jeder Bestellung.",
+      brazilDesc: "Marktkenntnis vor Ort und Kundenbetreuung auf der brasilianischen Seite jeder Bestellung.",
     },
   },
 
@@ -311,14 +320,14 @@ export const de: Dictionary = {
   ],
 
   processSteps: [
-    { title: "Anfrage", description: "Sie teilen uns mit, was Sie benötigen — ein Produkt, eine Spezifikation oder eine Herausforderung bei der Beschaffung." },
+    { title: "Anfrage", description: "Wir klären genau, was Sie benötigen — ein Produkt, eine Spezifikation oder eine Beschaffungsherausforderung —, bevor die Suche beginnt." },
     { title: "Beschaffung", description: "Unser Netzwerk identifiziert qualifizierte Lieferanten und verfügbare Bestände in ganz Europa." },
     { title: "Qualitätsprüfung", description: "Materialien werden vor Verlassen des Lieferanten gegen Ihre Spezifikation geprüft." },
     { title: "Lieferung", description: "Materialien treffen einsatzbereit in Ihrem Labor oder Ihrer Einrichtung ein." },
   ],
 
   trustPoints: [
-    { label: "Deutschland + Brasilien", value: "Bilaterale Präsenz", description: "Eigene Teams zur Betreuung von Kunden in beiden Regionen." },
+    { label: "Deutschland + Brasilien", value: "Bilaterale Präsenz", description: "Europäische Beschaffung aus Deutschland, lokale Marktunterstützung aus Brasilien." },
     { label: "Qualität zuerst", value: "Zertifizierte Lieferanten", description: "Jeder Artikel von qualifizierten, renommierten Herstellern beschafft." },
     { label: "Direktes Netzwerk", value: "Europäische Beschaffung", description: "Etablierte Beziehungen zu Herstellern und Lieferanten." },
     { label: "Persönlicher Kontakt", value: "Direkter Support", description: "Ein namentlich benannter Spezialist für jede Anfrage, keine Ticket-Warteschlange." },

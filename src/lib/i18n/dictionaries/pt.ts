@@ -138,13 +138,34 @@ export const pt: Dictionary = {
       eurobramCol: "EUROBRAM",
       brokerCol: "Corretor Genérico",
       rows: [
-        "Equipamentos e consumíveis certificados",
-        "Equipes dedicadas na Alemanha e no Brasil",
-        "Acesso direto à rede de fornecedores europeus",
-        "Materiais verificados conforme especificação",
-        "Especialista nomeado para cada solicitação",
-        "Suporte para itens de difícil obtenção",
-        "Comunicação transparente e proativa sobre remessas",
+        {
+          label: "Equipamentos e consumíveis certificados",
+          benefit: "Cada item vem de fabricantes que já qualificamos, não de fornecimento às cegas.",
+        },
+        {
+          label: "Equipes dedicadas na Alemanha e no Brasil",
+          benefit: "Um especialista nomeado acompanha sua solicitação de cada lado — sem suporte compartilhado.",
+        },
+        {
+          label: "Acesso direto à rede de fornecedores europeus",
+          benefit: "Falamos diretamente com fornecedores, inclusive os difíceis de contatar a partir do Brasil.",
+        },
+        {
+          label: "Materiais verificados conforme especificação",
+          benefit: "Confirmamos que os itens obtidos atendem aos seus requisitos técnicos antes de o pedido avançar.",
+        },
+        {
+          label: "Especialista nomeado para cada solicitação",
+          benefit: "Você fala com a mesma pessoa durante toda a solicitação, não com uma fila rotativa.",
+        },
+        {
+          label: "Suporte para itens de difícil obtenção",
+          benefit: "Quando um canal padrão não resolve, continuamos buscando em nossa rede mais ampla.",
+        },
+        {
+          label: "Comunicação transparente e proativa sobre remessas",
+          benefit: "Você é informado conforme seu pedido avança, sem precisar cobrar uma atualização.",
+        },
       ],
     },
     process: {
@@ -157,25 +178,13 @@ export const pt: Dictionary = {
       title: "Não é um catálogo — é uma rede de fornecimento.",
       description: "Não mantemos estoque para venda. Identificamos, qualificamos e movimentamos os materiais específicos que seu laboratório ou linha de produção precisa.",
     },
-    testimonials: {
-      eyebrow: "Depoimentos",
-      title: "O que nossos parceiros dizem sobre trabalhar conosco.",
+    commitments: {
+      eyebrow: "O Que Você Pode Esperar",
+      title: "O que você pode esperar ao trabalhar conosco.",
       items: [
-        {
-          quote: "Todas as remessas corresponderam exatamente à ficha de especificação — sem substituições, sem surpresas quando chegam à nossa bancada.",
-          role: "Diretor de Controle de Qualidade",
-          org: "Fabricante Farmacêutica",
-        },
-        {
-          quote: "Tínhamos uma coluna de HPLC que outros dois fornecedores não conseguiram localizar. A EUROBRAM a encontrou e a entregou sem a burocracia habitual.",
-          role: "Gerente de Laboratório",
-          org: "Organização de Pesquisa Clínica",
-        },
-        {
-          quote: "Ter um único ponto de contato para o fornecimento simplificou um processo que antes envolvia três fornecedores diferentes.",
-          role: "Responsável por Compras",
-          org: "Empresa Agroquímica",
-        },
+        "Cada item é verificado conforme sua especificação antes de sair do fornecedor.",
+        "Quando um fornecedor não consegue localizar um item, continuamos buscando em nossa rede antes de dar um retorno.",
+        "Um único ponto de contato acompanha sua solicitação, da primeira mensagem até a entrega.",
       ],
     },
     faqPreview: {
@@ -248,9 +257,9 @@ export const pt: Dictionary = {
       title: "Equipes bem treinadas e experientes na Alemanha e no Brasil.",
       description: "Um especialista nomeado em cada lado da remessa — não uma fila de atendimento.",
       germanyLabel: "Alemanha · Weimar",
-      germanyDesc: "Contato principal para aquisição e dúvidas gerais a partir da nossa sede em Weimar.",
+      germanyDesc: "Baseado em nossa sede em Weimar, responsável pelo acesso a fornecedores e aquisição em toda a Europa.",
       brazilLabel: "Brasil · Rede de Parceiros",
-      brazilDesc: "Coordena a entrega local e o suporte no lado brasileiro de cada pedido.",
+      brazilDesc: "Conhecimento do mercado local e suporte ao cliente no lado brasileiro de cada pedido.",
     },
   },
 
@@ -311,14 +320,14 @@ export const pt: Dictionary = {
   ],
 
   processSteps: [
-    { title: "Solicitação", description: "Você compartilha o que precisa — um produto, uma especificação ou uma dificuldade que está enfrentando para obtê-lo." },
+    { title: "Solicitação", description: "Esclarecemos exatamente o que você precisa — um produto, uma especificação ou um desafio de fornecimento — antes de iniciar a busca." },
     { title: "Fornecimento", description: "Nossa rede identifica fornecedores qualificados e estoque disponível em toda a Europa." },
     { title: "Verificação de Qualidade", description: "Os materiais são verificados conforme sua especificação antes de sair do fornecedor." },
     { title: "Entrega", description: "Os materiais chegam ao seu laboratório ou instalação, prontos para uso." },
   ],
 
   trustPoints: [
-    { label: "Alemanha + Brasil", value: "Presença Bilateral", description: "Equipes dedicadas apoiando clientes nas duas regiões." },
+    { label: "Alemanha + Brasil", value: "Presença Bilateral", description: "Fornecimento europeu a partir da Alemanha, suporte local a partir do Brasil." },
     { label: "Qualidade em Primeiro Lugar", value: "Fornecedores Certificados", description: "Cada item obtido junto a fabricantes qualificados e de boa reputação." },
     { label: "Rede Direta", value: "Fornecimento Europeu", description: "Relacionamentos consolidados com fabricantes e fornecedores." },
     { label: "Contato Pessoal", value: "Suporte Direto", description: "Um especialista nomeado para cada solicitação, não uma fila de tickets." },

@@ -6,7 +6,7 @@ import { IndustriesGrid } from "@/components/sections/IndustriesGrid";
 import { WhyChoose } from "@/components/sections/WhyChoose";
 import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { ProcurementCategories } from "@/components/sections/ProcurementCategories";
-import { Testimonials } from "@/components/sections/Testimonials";
+import { Commitments } from "@/components/sections/Commitments";
 import { FaqPreview } from "@/components/sections/FaqPreview";
 import { InsightsPreview } from "@/components/sections/InsightsPreview";
 import { CtaSection } from "@/components/sections/CtaSection";
@@ -30,7 +30,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <IndustriesGrid dict={dict} />
       <WhyChoose dict={dict} />
       <ProcurementCategories dict={dict} />
-      <Testimonials dict={dict} />
+      <Commitments dict={dict} />
       <FaqPreview locale={locale} dict={dict} />
       <InsightsPreview locale={locale} dict={dict} />
       <CtaSection locale={locale} dict={dict} />
